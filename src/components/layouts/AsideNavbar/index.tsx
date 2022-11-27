@@ -1,8 +1,5 @@
 import { Navbar, Group, Code, ScrollArea, createStyles } from '@mantine/core';
-import { RectangleGroupIcon } from '@heroicons/react/24/solid';
-// import { UserButton } from '../UserButton/UserButton';
 import { LinksGroup } from './NavbarLinksGroup';
-// import { Logo } from './Logo';
 
 export type SubmenuType = {
   name: string;
@@ -45,7 +42,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function NavbarNested({ menus }: any) {
+export default function AsideNavbar({ menus }: any) {
   const { classes } = useStyles();
   const mainMenus = menus || [];
 
@@ -53,7 +50,6 @@ export function NavbarNested({ menus }: any) {
     <Navbar height={800} width={{ sm: 300 }} p="md" className={classes.navbar}>
       <Navbar.Section className={classes.header}>
         <Group position="apart">
-          {/* <Logo width={120} /> */}
           <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
         </Group>
       </Navbar.Section>

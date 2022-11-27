@@ -1,16 +1,8 @@
-import { SubmenuType } from '@/components/layouts/sideNavbar';
-import {
-  UnstyledButton,
-  Group,
-  Box,
-  Collapse,
-  createStyles,
-  Text,
-} from '@mantine/core';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { SubmenuType } from './index';
+import { Box, createStyles, Text } from '@mantine/core';
+import React from 'react';
 import { nanoid } from 'nanoid';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -90,8 +82,7 @@ interface ISubmenuLinksGroup {
 }
 
 export function SubmenuLinksGroup({ menu }: ISubmenuLinksGroup) {
-  const { classes, theme } = useStyles();
-  const [submenuOpened, setSubmenuOpened] = useState(false);
+  const { classes } = useStyles();
 
   for (let i = 0; i < menu.list.length; i++) {
     if (menu.list[i].charAt(i) === '_' || ' ') {
@@ -99,7 +90,7 @@ export function SubmenuLinksGroup({ menu }: ISubmenuLinksGroup) {
     }
   }
   return (
-    <React.Fragment>
+    <>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Box ml="md" py="xs" px="md" fz="sm">
           <Text tt="uppercase" fw={600} style={{ letterSpacing: '0.5px' }}>
@@ -123,43 +114,6 @@ export function SubmenuLinksGroup({ menu }: ISubmenuLinksGroup) {
           </Text>
         </Link>
       ))}
-      {/* <UnstyledButton
-        onClick={() => setSubmenuOpened((o) => !o)}
-        className={classes.control}
-      >
-        <Group position="apart" spacing={0}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Box ml="md">{menu.name.replaceAll('_', ' ')}</Box>
-          </Box>
-          <ChevronRightIcon
-            className={classes.chevron}
-            width={14}
-            style={{
-              transform: submenuOpened
-                ? `rotate(${theme.dir === 'rtl' ? -90 : 90}deg)`
-                : 'none',
-            }}
-          />
-        </Group>
-      </UnstyledButton>
-      <Collapse in={submenuOpened}>
-        {menu.list.map((link) => (
-          <Link
-            href={`/${menu.name
-              .toLocaleLowerCase()
-              .replaceAll(' ', '-')
-              .replaceAll('_', '-')}/${link
-              .replaceAll(' ', '-')
-              .replaceAll('_', '-')}`}
-            key={nanoid()}
-            passHref
-          >
-            <Text component="a" className={classes.subLink}>
-              {link.replaceAll('_', ' ')}
-            </Text>
-          </Link>
-        ))}
-      </Collapse> */}
-    </React.Fragment>
+    </>
   );
 }

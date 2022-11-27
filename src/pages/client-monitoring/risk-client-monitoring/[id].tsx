@@ -77,7 +77,10 @@ function SegmentData(title: string, data: number | string | undefined) {
 
 const useStyles = createStyles((theme) => ({
   pageTitle: {
-    color: theme.colors.secondaryColor[9],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.secondaryColor[3]
+        : theme.colors.secondaryColor[8],
   },
 }));
 
