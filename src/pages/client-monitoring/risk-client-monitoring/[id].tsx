@@ -1,18 +1,49 @@
+import React, { useEffect, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { ArrowDownTrayIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import {
-  GetPortfolioDetailsResponse,
-  getPortfolioDetails,
+  ActionIcon,
+  Anchor,
+  Box,
+  Breadcrumbs,
+  Button,
+  Center,
+  Container,
+  createStyles,
+  Flex,
+  Grid,
+  Group,
+  LoadingOverlay,
+  Menu,
+  Paper,
+  Select,
+  SimpleGrid,
+  Skeleton,
+  Text,
+  Textarea,
+  Title,
+} from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
+import { DataTable, DataTableColumn } from 'mantine-datatable';
+import { nanoid } from 'nanoid';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import {
+  getClientPortfolioAlerts,
+  GetClientPortfolioAlertsResponse,
   getClientPortfolioSummary,
   GetClientPortfolioSummaryResponse,
   getClientPortofolioAdditionalDocuments,
   GetClientPortofolioAdditionalDocumentsResponse,
-  GetClientPortfolioAlertsResponse,
-  getClientPortfolioAlerts,
   getClientRecommendationSummary,
   GetClientRecommendationSummaryResponse,
-  PostPortfolioSummaryRequest,
-  postPortfolioRecommendationRequest,
+  getPortfolioDetails,
+  GetPortfolioDetailsResponse,
   PostPortfolioRecommendationRequest,
+  postPortfolioRecommendationRequest,
   postPortfolioSummary,
+  PostPortfolioSummaryRequest,
 } from '@/api/endpoint/midgard/backoffices';
 import SimpleTable from '@/components/common/SimpleTable';
 import PageBreadcrumbs from '@/components/core/PageBreadcrumbs';
@@ -27,42 +58,12 @@ import {
 } from '@/components/pages/client-monitoring/risk-client-monitoring/FinalRecommendation';
 import {
   InternetSummary,
-  StatusSummary,
   PortfolioSummaryFormValues,
+  StatusSummary,
 } from '@/components/pages/client-monitoring/risk-client-monitoring/PortfolioSummary';
 import { PortfolioAlerts } from '@/components/pages/client-monitoring/risk-client-monitoring/PortofolioAlerts';
 import useAuthStore from '@/store/useAuthStore';
 import withAuth from '@/utils/hooks/withAuth';
-import { ArrowDownTrayIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
-import {
-  Button,
-  Grid,
-  Flex,
-  Paper,
-  SimpleGrid,
-  Text,
-  Container,
-  Title,
-  Menu,
-  Select,
-  Group,
-  Skeleton,
-  LoadingOverlay,
-  Box,
-  createStyles,
-  Textarea,
-  ActionIcon,
-  Center,
-  Anchor,
-  Breadcrumbs,
-} from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
-import { DataTable, DataTableColumn } from 'mantine-datatable';
-import { nanoid } from 'nanoid';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 function SegmentData(title: string, data: number | string | undefined) {
   return (

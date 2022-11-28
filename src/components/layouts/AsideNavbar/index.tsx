@@ -1,4 +1,5 @@
-import { Navbar, Group, Code, ScrollArea, createStyles } from '@mantine/core';
+import { Code, createStyles, Group, Navbar, ScrollArea } from '@mantine/core';
+
 import { LinksGroup } from './NavbarLinksGroup';
 
 export type SubmenuType = {

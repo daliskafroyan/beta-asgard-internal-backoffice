@@ -1,11 +1,3 @@
-import type { AppProps } from 'next/app';
-import '@/styles/globals.css';
-import {
-  ColorScheme,
-  ColorSchemeProvider,
-  MantineProvider,
-  MantineThemeOverride,
-} from '@mantine/core';
 import { useEffect, useState } from 'react';
 import {
   MutationCache,
@@ -14,20 +6,32 @@ import {
   QueryClientProvider,
 } from 'react-query';
 import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+  MantineThemeOverride,
+  ThemeIcon,
+} from '@mantine/core';
+import {
   NotificationsProvider,
   showNotification,
 } from '@mantine/notifications';
-import { LayoutFactory } from '@/utils/LayoutFactory';
+import { SpotlightAction, SpotlightProvider } from '@mantine/spotlight';
+import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+
 import useAuthStore from '@/store/useAuthStore';
+import iconMapper from '@/utils/iconMapper';
+import { LayoutFactory } from '@/utils/LayoutFactory';
+import { RouterTransition } from '@/utils/RouterTransition';
+
+import '@/styles/globals.css';
 import '@fontsource/source-sans-pro/200.css';
 import '@fontsource/source-sans-pro/300.css';
 import '@fontsource/source-sans-pro/400.css';
 import '@fontsource/source-sans-pro/600.css';
 import '@fontsource/source-sans-pro/700.css';
 import '@fontsource/source-sans-pro/900.css';
-import { RouterTransition } from '@/utils/RouterTransition';
-import { SpotlightAction, SpotlightProvider } from '@mantine/spotlight';
-import { useRouter } from 'next/router';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const colorScheme = useAuthStore.useColorScheme();
@@ -116,6 +120,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             .replaceAll('_', '-')}/${sub_menu_list
             .replaceAll(' ', '-')
             .replaceAll('_', '-')}`,
+          icon: (
+            <ThemeIcon variant="light" size={30}>
+              {iconMapper(menu.icon ?? '')}
+            </ThemeIcon>
+          ),
           onTrigger: () =>
             router.push(
               `/${sub_menu.name

@@ -1,18 +1,20 @@
 import { useState } from 'react';
+import React from 'react';
+import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import {
-  Group,
   Box,
   Collapse,
+  createStyles,
+  Group,
+  Text,
   ThemeIcon,
   UnstyledButton,
-  createStyles,
-  Text,
 } from '@mantine/core';
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
+
 import { MainMenuType } from '@/components/layouts/AsideNavbar';
-import React from 'react';
-import { SubmenuLinksGroup } from './SubmenuLinksGroup';
 import iconMapper from '@/utils/iconMapper';
+
+import { SubmenuLinksGroup } from './SubmenuLinksGroup';
 
 const useStyles = createStyles((theme) => ({
   control: {

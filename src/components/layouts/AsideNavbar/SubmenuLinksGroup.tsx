@@ -1,8 +1,9 @@
-import { SubmenuType } from './index';
-import { Box, createStyles, Text } from '@mantine/core';
 import React from 'react';
+import { Box, createStyles, Text } from '@mantine/core';
 import { nanoid } from 'nanoid';
 import Link from 'next/link';
+
+import { SubmenuType } from './index';
 
 const useStyles = createStyles((theme) => ({
   control: {

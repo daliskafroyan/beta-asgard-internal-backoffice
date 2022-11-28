@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createStyles, Table, ScrollArea } from '@mantine/core';
+import { createStyles, ScrollArea, Table } from '@mantine/core';
 import { nanoid } from 'nanoid';
 
 const useStyles = createStyles((theme) => ({

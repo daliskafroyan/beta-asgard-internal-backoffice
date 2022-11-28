@@ -1,5 +1,5 @@
 import { UserCircleIcon } from '@heroicons/react/24/outline';
-import { Menu, Text, ActionIcon } from '@mantine/core';
+import { ActionIcon, Menu, Text } from '@mantine/core';
 
 export default function UserMenu({ onLogOut }: { onLogOut: () => void }) {
   return (

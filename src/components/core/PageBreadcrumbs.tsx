@@ -1,11 +1,5 @@
 import { UserCircleIcon } from '@heroicons/react/24/outline';
-import {
-  Menu,
-  Text,
-  ActionIcon,
-  Breadcrumbs,
-  createStyles,
-} from '@mantine/core';
+import { Breadcrumbs, createStyles, Menu, Text } from '@mantine/core';
 import { nanoid } from 'nanoid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

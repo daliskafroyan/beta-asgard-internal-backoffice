@@ -1,20 +1,10 @@
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import {
-  getClientPortofolio,
-  GetClientPortofolioResponse,
-} from '@/api/endpoint/midgard/backoffices';
-import PageBreadcrumbs from '@/components/core/PageBreadcrumbs';
-import useAuthStore from '@/store/useAuthStore';
-import withAuth from '@/utils/hooks/withAuth';
-import {
-  ArrowDownIcon,
-  ArrowLongDownIcon,
-  ArrowsUpDownIcon,
-  ArrowUpIcon,
-  MagnifyingGlassIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/solid';
-import {
+  ActionIcon,
   Button,
+  Container,
   createStyles,
   Divider,
   Grid,
@@ -22,21 +12,22 @@ import {
   Pagination,
   Paper,
   Select,
-  Table,
-  Text,
-  TextInput,
   SimpleGrid,
-  ActionIcon,
-  Container,
+  Table,
+  TextInput,
 } from '@mantine/core';
 import { DateRangePicker, DateRangePickerValue } from '@mantine/dates';
 import { useForm } from '@mantine/form';
 import { DataTable, DataTableSortStatus } from 'mantine-datatable';
-import { nanoid } from 'nanoid';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+
+import {
+  getClientPortofolio,
+  GetClientPortofolioResponse,
+} from '@/api/endpoint/midgard/backoffices';
+import PageBreadcrumbs from '@/components/core/PageBreadcrumbs';
+import useAuthStore from '@/store/useAuthStore';
+import withAuth from '@/utils/hooks/withAuth';
 
 type RiskClientTableHeader = {
   name: string;
@@ -185,8 +176,6 @@ export function RiskClientMonitoring() {
   const [lastMonitoringDate, setLastMonitoringDate] = useState<
     DateRangePickerValue | undefined
   >();
-
-  const { classes } = useStyles();
 
   const handleFilterSubmit = (
     values: Omit<

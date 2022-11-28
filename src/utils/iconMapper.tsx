@@ -1,18 +1,18 @@
 import {
-  PhoneIcon,
-  UserIcon,
+  BanknotesIcon,
+  BookOpenIcon,
   BriefcaseIcon,
   BugAntIcon,
-  DocumentTextIcon,
-  BookOpenIcon,
   CalculatorIcon,
-  BanknotesIcon,
-  WrenchScrewdriverIcon,
+  Cog6ToothIcon,
+  DocumentTextIcon,
+  HandThumbUpIcon,
   IdentificationIcon,
   MapIcon,
-  Cog6ToothIcon,
+  PhoneIcon,
   UserGroupIcon,
-  HandThumbUpIcon,
+  UserIcon,
+  WrenchScrewdriverIcon,
 } from '@heroicons/react/24/solid';
 
 const iconMapper = (icon: string) => {

@@ -1,21 +1,22 @@
 import { useState } from 'react';
-import {
-  AppShell as MantineAppShell,
-  Navbar,
-  Header,
-  Text,
-  MediaQuery,
-  useMantineTheme,
-  useMantineColorScheme,
-  Group,
-  ActionIcon,
-} from '@mantine/core';
-import AsideNavbar from '@/components/layouts/AsideNavbar';
 import { MagnifyingGlassIcon, SunIcon } from '@heroicons/react/24/outline';
 import { MoonIcon } from '@heroicons/react/24/solid';
-import UserMenu from '@/components/common/UserMenu';
-import useAuthStore from '@/store/useAuthStore';
+import {
+  ActionIcon,
+  AppShell as MantineAppShell,
+  Group,
+  Header,
+  MediaQuery,
+  Navbar,
+  Text,
+  useMantineColorScheme,
+  useMantineTheme,
+} from '@mantine/core';
 import { openSpotlight } from '@mantine/spotlight';
+
+import UserMenu from '@/components/common/UserMenu';
+import AsideNavbar from '@/components/layouts/AsideNavbar';
+import useAuthStore from '@/store/useAuthStore';
 
 interface LayoutProps {
   children: React.ReactNode;
