@@ -47,6 +47,7 @@ import {
 } from '@/api/endpoint/midgard/backoffices';
 import SimpleTable from '@/components/common/SimpleTable';
 import PageBreadcrumbs from '@/components/core/PageBreadcrumbs';
+import { PageContent } from '@/components/layouts/PageContent';
 import {
   AdditionalDocuments,
   FinancialReports,
@@ -75,15 +76,6 @@ function SegmentData(title: string, data: number | string | undefined) {
     </div>
   );
 }
-
-const useStyles = createStyles((theme) => ({
-  pageTitle: {
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.secondaryColor[3]
-        : theme.colors.secondaryColor[8],
-  },
-}));
 
 function monthConverter(month: string) {
   switch (month) {
@@ -120,7 +112,6 @@ function DetailRisk() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { classes } = useStyles();
   //#region  //*=========== State Region ===========
   const user = useAuthStore.useUser();
   const queryClient = useQueryClient();
@@ -342,170 +333,155 @@ function DetailRisk() {
   });
 
   console.log('#debug breadcrumb item', breadcrumbItems);
-  const items = [
-    { title: 'Mantine', href: '#' },
-    { title: 'Mantine hooks', href: '#' },
-    { title: 'use-id', href: '#' },
-  ].map((item, index) => (
-    <Anchor href={item.href} key={index}>
-      {item.title}
-    </Anchor>
-  ));
 
   return (
-    <Container size="xl">
-      <SimpleGrid verticalSpacing="md" py="md">
-        <PageBreadcrumbs />
-        <Title order={2} className={classes.pageTitle}>
-          Borrower Monitoring Details - Risk
-        </Title>
-        <Paper withBorder shadow="xs">
-          <Skeleton
-            visible={isGetPortfolioDetailsLoading || isGetPortfolioDetailsIdle}
-          >
-            <Grid justify="space-between" grow p="md">
-              <Grid.Col md={6} lg={2}>
-                <SimpleGrid cols={1} spacing="md">
-                  {SegmentData(
-                    'Name: ',
-                    portfolioDetails?.data.borrower_information.portfolio_client
-                      .name ?? '-',
-                  )}
-                  {SegmentData(
-                    'Type: ',
-                    portfolioDetails?.data.borrower_information.portfolio_client
-                      .type ?? '-',
-                  )}
-                </SimpleGrid>
-              </Grid.Col>
-              <Grid.Col md={6} lg={2}>
-                <SimpleGrid cols={1} spacing="md">
-                  {SegmentData(
-                    'Segment: ',
-                    portfolioDetails?.data.borrower_information.portfolio_client
-                      .segment ?? '-',
-                  )}
-                  {SegmentData(
-                    'Contract Signing Date: ',
-                    portfolioDetails?.data.borrower_information
-                      .subject_reference_date ?? '-',
-                  )}
-                </SimpleGrid>
-              </Grid.Col>
-              <Grid.Col md={6} lg={2}>
-                <SimpleGrid cols={1} spacing="md">
-                  {SegmentData(
-                    'Last Monitoring Date: ',
-                    portfolioDetails?.data.borrower_information
-                      .last_monitoring ?? '-',
-                  )}
-                  {SegmentData(
-                    'Next Monitoring Date: ',
-                    portfolioDetails?.data.borrower_information
-                      .next_monitoring_date ?? '-',
-                  )}
-                </SimpleGrid>
-              </Grid.Col>
-              <Grid.Col md={6} lg={2}>
-                <SimpleGrid cols={1} spacing="md">
-                  {SegmentData(
-                    'Approved Loan / Limit Amount: ',
-                    portfolioDetails?.data.borrower_information.amount ?? '-',
-                  )}
-                  {SegmentData(
-                    'Group Code: ',
-                    !!portfolioDetails?.data.borrower_information
-                      .portfolio_client.group_code
-                      ? portfolioDetails?.data.borrower_information
-                          .portfolio_client.group_code
-                      : '-',
-                  )}
-                </SimpleGrid>
-              </Grid.Col>
-              <Grid.Col md={6} lg={2}>
-                <SimpleGrid cols={1} spacing="md">
-                  {SegmentData(
-                    'Monitoring End Date: ',
-                    portfolioDetails?.data.borrower_information
-                      .monitoring_end_date ?? '-',
-                  )}
-                </SimpleGrid>
-              </Grid.Col>
-            </Grid>
-          </Skeleton>
-        </Paper>
+    <PageContent title="Borrower Monitoring Details - Risk">
+      <Paper withBorder shadow="xs">
+        <Skeleton
+          visible={isGetPortfolioDetailsLoading || isGetPortfolioDetailsIdle}
+        >
+          <Grid justify="space-between" grow p="md">
+            <Grid.Col md={6} lg={2}>
+              <SimpleGrid cols={1} spacing="md">
+                {SegmentData(
+                  'Name: ',
+                  portfolioDetails?.data.borrower_information.portfolio_client
+                    .name ?? '-',
+                )}
+                {SegmentData(
+                  'Type: ',
+                  portfolioDetails?.data.borrower_information.portfolio_client
+                    .type ?? '-',
+                )}
+              </SimpleGrid>
+            </Grid.Col>
+            <Grid.Col md={6} lg={2}>
+              <SimpleGrid cols={1} spacing="md">
+                {SegmentData(
+                  'Segment: ',
+                  portfolioDetails?.data.borrower_information.portfolio_client
+                    .segment ?? '-',
+                )}
+                {SegmentData(
+                  'Contract Signing Date: ',
+                  portfolioDetails?.data.borrower_information
+                    .subject_reference_date ?? '-',
+                )}
+              </SimpleGrid>
+            </Grid.Col>
+            <Grid.Col md={6} lg={2}>
+              <SimpleGrid cols={1} spacing="md">
+                {SegmentData(
+                  'Last Monitoring Date: ',
+                  portfolioDetails?.data.borrower_information.last_monitoring ??
+                    '-',
+                )}
+                {SegmentData(
+                  'Next Monitoring Date: ',
+                  portfolioDetails?.data.borrower_information
+                    .next_monitoring_date ?? '-',
+                )}
+              </SimpleGrid>
+            </Grid.Col>
+            <Grid.Col md={6} lg={2}>
+              <SimpleGrid cols={1} spacing="md">
+                {SegmentData(
+                  'Approved Loan / Limit Amount: ',
+                  portfolioDetails?.data.borrower_information.amount ?? '-',
+                )}
+                {SegmentData(
+                  'Group Code: ',
+                  !!portfolioDetails?.data.borrower_information.portfolio_client
+                    .group_code
+                    ? portfolioDetails?.data.borrower_information
+                        .portfolio_client.group_code
+                    : '-',
+                )}
+              </SimpleGrid>
+            </Grid.Col>
+            <Grid.Col md={6} lg={2}>
+              <SimpleGrid cols={1} spacing="md">
+                {SegmentData(
+                  'Monitoring End Date: ',
+                  portfolioDetails?.data.borrower_information
+                    .monitoring_end_date ?? '-',
+                )}
+              </SimpleGrid>
+            </Grid.Col>
+          </Grid>
+        </Skeleton>
+      </Paper>
 
-        <Group position="apart">
-          <Text> Historical Clik Reports</Text>
-          {!!portfolioDetails?.data.available_periods ? (
-            <Select
-              data={listReportDate}
-              value={reportDate}
-              onChange={setReportDate}
-              placeholder="Select Date"
-            />
-          ) : (
-            <Select
-              data={[{ value: '', label: 'Data is not available' }]}
-              disabled
-              placeholder="Data is not available"
-            />
-          )}
-        </Group>
+      <Group position="apart">
+        <Text> Historical Clik Reports</Text>
+        {!!portfolioDetails?.data.available_periods ? (
+          <Select
+            data={listReportDate}
+            value={reportDate}
+            onChange={setReportDate}
+            placeholder="Select Date"
+          />
+        ) : (
+          <Select
+            data={[{ value: '', label: 'Data is not available' }]}
+            disabled
+            placeholder="Data is not available"
+          />
+        )}
+      </Group>
 
-        <Grid>
-          <Grid.Col span={12}>
-            <PortfolioAlerts
-              fetchStatus={getPortfolioAlertsStatus}
-              data={portfolioAlerts?.data ?? {}}
-            />
-          </Grid.Col>
-          <Grid.Col span={12}>
-            <StatusSummary
-              fetchStatus={getPortfolioSummaryStatus}
-              data={portfolioSummary?.data ?? {}}
-              submitSummary={handleSubmitSummary}
-              isReportDateSelected={!!reportDate}
-            />
-          </Grid.Col>
-          <Grid.Col span={12}>
-            <InternetSummary
-              fetchStatus={getPortfolioSummaryStatus}
-              data={portfolioSummary?.data ?? {}}
-              submitSummary={handleSubmitSummary}
-              isReportDateSelected={!!reportDate}
-            />
-          </Grid.Col>
-          <Grid.Col span={12}>
-            <VisitReports
-              data={additionalDocuments?.data.portfolio_summary_documents ?? {}}
-              fetchStatus={getAdditionalDocumentsStatus}
-            />
-          </Grid.Col>
-          <Grid.Col span={12}>
-            <FinancialReports
-              data={additionalDocuments?.data.portfolio_summary_documents ?? {}}
-              fetchStatus={getAdditionalDocumentsStatus}
-            />
-          </Grid.Col>
-          <Grid.Col span={12}>
-            <AdditionalDocuments
-              data={additionalDocuments?.data.portfolio_summary_documents ?? {}}
-              fetchStatus={getAdditionalDocumentsStatus}
-            />
-          </Grid.Col>
+      <Grid>
+        <Grid.Col span={12}>
+          <PortfolioAlerts
+            fetchStatus={getPortfolioAlertsStatus}
+            data={portfolioAlerts?.data ?? {}}
+          />
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <StatusSummary
+            fetchStatus={getPortfolioSummaryStatus}
+            data={portfolioSummary?.data ?? {}}
+            submitSummary={handleSubmitSummary}
+            isReportDateSelected={!!reportDate}
+          />
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <InternetSummary
+            fetchStatus={getPortfolioSummaryStatus}
+            data={portfolioSummary?.data ?? {}}
+            submitSummary={handleSubmitSummary}
+            isReportDateSelected={!!reportDate}
+          />
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <VisitReports
+            data={additionalDocuments?.data.portfolio_summary_documents ?? {}}
+            fetchStatus={getAdditionalDocumentsStatus}
+          />
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <FinancialReports
+            data={additionalDocuments?.data.portfolio_summary_documents ?? {}}
+            fetchStatus={getAdditionalDocumentsStatus}
+          />
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <AdditionalDocuments
+            data={additionalDocuments?.data.portfolio_summary_documents ?? {}}
+            fetchStatus={getAdditionalDocumentsStatus}
+          />
+        </Grid.Col>
 
-          <Grid.Col span={12}>
-            <FinalRecommendation
-              fetchStatus={recommendationSummaryStatus}
-              data={recommendationSummary?.data ?? []}
-              isReportDateSelected={!!reportDate}
-              submitRecommendation={handleSubmitRecommendation}
-            />
-          </Grid.Col>
-        </Grid>
-      </SimpleGrid>
-    </Container>
+        <Grid.Col span={12}>
+          <FinalRecommendation
+            fetchStatus={recommendationSummaryStatus}
+            data={recommendationSummary?.data ?? []}
+            isReportDateSelected={!!reportDate}
+            submitRecommendation={handleSubmitRecommendation}
+          />
+        </Grid.Col>
+      </Grid>
+    </PageContent>
   );
 }
 

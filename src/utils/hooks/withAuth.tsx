@@ -1,10 +1,9 @@
-import { useRouter } from 'next/router';
 import * as React from 'react';
+import { LoadingOverlay } from '@mantine/core';
+import { useRouter } from 'next/router';
 
 import useAuthStore from '@/store/useAuthStore';
 import { getFromLocalStorage } from '@/utils/helper';
-import { LoadingOverlay } from '@mantine/core';
-import AppShell from '@/components/layouts/AppShell';
 
 const HOME_ROUTE = '/dashboard';
 export const LOGIN_ROUTE = '/login';
@@ -62,20 +61,12 @@ export default function withAuth<T>(
     }, [isAuthenticated, logout, stopLoading]);
 
     React.useEffect(() => {
-      // run checkAuth every page visit
       checkAuth();
-
-      // // run checkAuth every focus changes
-      // window.addEventListener('focus', checkAuth);
-      // return () => {
-      //   window.removeEventListener('focus', checkAuth);
-      // };
     }, [checkAuth]);
 
     React.useEffect(() => {
       if (!isLoading) {
         if (isAuthenticated) {
-          // Prevent authenticated user from accessing auth or other role pages
           if (routeRole === 'auth') {
             if (query?.redirect) {
               router.replace(query.redirect as string);
@@ -84,7 +75,6 @@ export default function withAuth<T>(
             }
           }
         } else {
-          // Prevent unauthenticated user from accessing protected pages
           if (routeRole !== 'auth' && routeRole !== 'optional') {
             router.replace(
               `${LOGIN_ROUTE}?redirect=${router.asPath}`,
@@ -96,9 +86,7 @@ export default function withAuth<T>(
     }, [isAuthenticated, isLoading, query, router, user]);
 
     if (
-      // If unauthenticated user want to access protected pages
       (isLoading || !isAuthenticated) &&
-      // auth pages and optional pages are allowed to access without login
       routeRole !== 'auth' &&
       routeRole !== 'optional'
     ) {

@@ -1,14 +1,10 @@
+import { ColorScheme } from '@mantine/core';
 import { createSelectorHooks } from 'auto-zustand-selectors-hook';
 import produce from 'immer';
 import create from 'zustand';
+import { persist } from 'zustand/middleware';
 
 import { AuthResponse, MenuResponse } from '@/api/endpoint/asgard/backoffices';
-import { persist } from 'zustand/middleware';
-import { ColorScheme } from '@mantine/core';
-
-// type AuthUserType = UserCredentials & {
-//   menu: Menu;
-// };
 
 type AuthStoreType = {
   user: AuthResponse['data'] | undefined | null;

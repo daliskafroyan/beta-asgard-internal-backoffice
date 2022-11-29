@@ -1,6 +1,7 @@
+import { useRouter } from 'next/router';
+
 import AppShell from '@/components/layouts/AppShell';
 import useAuthStore from '@/store/useAuthStore';
-import { useRouter } from 'next/router';
 import { LOGIN_ROUTE } from '@/utils/hooks/withAuth';
 
 export const LayoutFactory = ({ children }: { children: React.ReactNode }) => {

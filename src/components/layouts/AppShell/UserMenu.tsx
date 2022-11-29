@@ -1,5 +1,5 @@
 import { UserCircleIcon } from '@heroicons/react/24/outline';
-import { ActionIcon, Menu, Text } from '@mantine/core';
+import { ActionIcon, Menu } from '@mantine/core';
 
 export default function UserMenu({ onLogOut }: { onLogOut: () => void }) {
   return (
@@ -12,15 +12,6 @@ export default function UserMenu({ onLogOut }: { onLogOut: () => void }) {
 
       <Menu.Dropdown>
         <Menu.Item onClick={onLogOut}>Log Out</Menu.Item>
-        <Menu.Item
-          rightSection={
-            <Text size="xs" color="dimmed">
-              ⌘K
-            </Text>
-          }
-        >
-          Search
-        </Menu.Item>
       </Menu.Dropdown>
     </Menu>
   );

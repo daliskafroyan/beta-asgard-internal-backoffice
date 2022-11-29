@@ -1,10 +1,11 @@
 import axios, { AxiosInstance, AxiosPromise, Cancel } from 'axios';
+
 import {
-  ApiRequestConfig,
-  WithAbortFn,
+  ApiError,
   ApiExecutor,
   ApiExecutorArgs,
-  ApiError,
+  ApiRequestConfig,
+  WithAbortFn,
 } from './api.types';
 
 const didAbort = (error: unknown): error is Cancel & { aborted: boolean } =>

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Container, createStyles, SimpleGrid, Title } from '@mantine/core';
+import Head from 'next/head';
 
 import PageBreadcrumbs from '@/components/core/PageBreadcrumbs';
 
@@ -16,22 +17,32 @@ export function PageContent({
   title,
   children,
 }: {
-  title?: string;
+  title: string;
   children: ReactNode;
 }) {
   const { classes } = useStyles();
 
   return (
-    <Container size="xl">
-      <SimpleGrid verticalSpacing="md" py="md">
-        <PageBreadcrumbs />
-        {title ? (
+    <>
+      <Head>
+        <title>{title}</title>
+        {/* <meta
+          name="description"
+          content="TypeScript starter for Next.js that includes all you need to build amazing apps"
+        /> */}
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Container size="xl">
+        <SimpleGrid verticalSpacing="md" py="md">
+          <PageBreadcrumbs />
+
           <Title order={2} className={classes.pageTitle}>
             {title}
           </Title>
-        ) : null}
-      </SimpleGrid>
-      {children}
-    </Container>
+
+          {children}
+        </SimpleGrid>
+      </Container>
+    </>
   );
 }

@@ -1,5 +1,7 @@
-import { ApiRequestConfig } from '@/api/api.types';
 import axios from 'axios';
+
+import { ApiRequestConfig } from '@/api/api.types';
+
 import api from '../../api';
 
 const axiosParams = {

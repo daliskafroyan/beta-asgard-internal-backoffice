@@ -1,35 +1,35 @@
-import { SubmenuType } from '@/components/layouts/sideNavbar';
-import {
-  UnstyledButton,
-  Group,
-  Box,
-  Collapse,
-  createStyles,
-  Text,
-  Button,
-  Flex,
-  Grid,
-  Select,
-  SimpleGrid,
-  Textarea,
-  Title,
-  Modal,
-  Paper,
-  ActionIcon,
-  Menu,
-} from '@mantine/core';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
-import { nanoid } from 'nanoid';
-import { GetClientRecommendationSummaryResponse } from '@/api/endpoint/midgard/backoffices';
-import { DataTable } from 'mantine-datatable';
 import {
   ArrowDownTrayIcon,
   EllipsisVerticalIcon,
   PlusIcon,
 } from '@heroicons/react/24/solid';
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Collapse,
+  createStyles,
+  Flex,
+  Grid,
+  Group,
+  Menu,
+  Modal,
+  Paper,
+  Select,
+  SimpleGrid,
+  Text,
+  Textarea,
+  Title,
+  UnstyledButton,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { DataTable } from 'mantine-datatable';
+import { nanoid } from 'nanoid';
+import Link from 'next/link';
+
+import { GetClientRecommendationSummaryResponse } from '@/api/endpoint/midgard/backoffices';
 
 type FinalRecommendationComponent = {
   fetchStatus: 'loading' | 'idle' | 'error' | 'success';

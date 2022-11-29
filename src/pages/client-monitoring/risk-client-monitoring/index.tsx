@@ -26,6 +26,7 @@ import {
   GetClientPortofolioResponse,
 } from '@/api/endpoint/midgard/backoffices';
 import PageBreadcrumbs from '@/components/core/PageBreadcrumbs';
+import { PageContent } from '@/components/layouts/PageContent';
 import useAuthStore from '@/store/useAuthStore';
 import withAuth from '@/utils/hooks/withAuth';
 
@@ -203,162 +204,154 @@ export function RiskClientMonitoring() {
   });
 
   return (
-    <Container size="xl">
-      <SimpleGrid verticalSpacing="md" py="md">
-        <PageBreadcrumbs />
-        <Paper p="sm">
-          <form onSubmit={form.onSubmit(handleFilterSubmit)}>
-            <Grid columns={51} align="flex-end">
-              <Grid.Col span={8}>
-                <TextInput
-                  placeholder="Search name"
-                  label="Name"
-                  {...form.getInputProps('name')}
-                />
-              </Grid.Col>
-              <Grid.Col span={8}>
-                <Select
-                  label="Type"
-                  placeholder="Pick type"
-                  clearable
-                  data={[
-                    { value: 'company', label: 'Company' },
-                    { value: 'individual', label: 'Individual' },
-                  ]}
-                  {...form.getInputProps('type')}
-                />
-              </Grid.Col>
-              <Grid.Col span={8}>
-                <Select
-                  label="Segment"
-                  placeholder="Pick segment"
-                  clearable
-                  data={[
-                    { value: 'payment_agent', label: 'Payment Agent' },
-                    { value: 'group_borrower', label: 'Group Borrower' },
-                    { value: 'guarantor', label: 'Guarantor' },
-                  ]}
-                  {...form.getInputProps('segment')}
-                />
-              </Grid.Col>
-              <Grid.Col span={8}>
-                <Select
-                  label="System Alert"
-                  placeholder="Pick system alert"
-                  clearable
-                  data={[
-                    { value: 'no_alert', label: 'No Alert' },
-                    { value: 'alert_generated', label: 'Alert Generated' },
-                  ]}
-                  {...form.getInputProps('portfolio_alert')}
-                />
-              </Grid.Col>
-              <Grid.Col span={8}>
-                <DateRangePicker
-                  label="Signing Date"
-                  placeholder="Pick signing date"
-                  inputFormat="MM/DD/YYYY"
-                  value={lastMonitoringDate}
-                  amountOfMonths={2}
-                  onChange={setSigningDate}
-                />
-              </Grid.Col>
-              <Grid.Col span={8}>
-                <DateRangePicker
-                  label="Last Monitoring Date"
-                  placeholder="Pick last monitoring date"
-                  amountOfMonths={2}
-                  inputFormat="MM/DD/YYYY"
-                  value={lastMonitoringDate}
-                  onChange={setLastMonitoringDate}
-                />
-              </Grid.Col>
-              <Grid.Col span={3}>
-                <ActionIcon
-                  variant="filled"
-                  color="blue"
-                  size="lg"
-                  type="submit"
-                >
-                  <MagnifyingGlassIcon height={16} />
-                </ActionIcon>
-              </Grid.Col>
-            </Grid>
-          </form>
-        </Paper>
-        <DataTable
-          withBorder
-          fetching={isDataQueryFetching}
-          columns={[
+    <PageContent title="Client Monitoring Index - Risk">
+      <Paper p="sm">
+        <form onSubmit={form.onSubmit(handleFilterSubmit)}>
+          <Grid columns={51} align="flex-end">
+            <Grid.Col span={8}>
+              <TextInput
+                placeholder="Search name"
+                label="Name"
+                {...form.getInputProps('name')}
+              />
+            </Grid.Col>
+            <Grid.Col span={8}>
+              <Select
+                label="Type"
+                placeholder="Pick type"
+                clearable
+                data={[
+                  { value: 'company', label: 'Company' },
+                  { value: 'individual', label: 'Individual' },
+                ]}
+                {...form.getInputProps('type')}
+              />
+            </Grid.Col>
+            <Grid.Col span={8}>
+              <Select
+                label="Segment"
+                placeholder="Pick segment"
+                clearable
+                data={[
+                  { value: 'payment_agent', label: 'Payment Agent' },
+                  { value: 'group_borrower', label: 'Group Borrower' },
+                  { value: 'guarantor', label: 'Guarantor' },
+                ]}
+                {...form.getInputProps('segment')}
+              />
+            </Grid.Col>
+            <Grid.Col span={8}>
+              <Select
+                label="System Alert"
+                placeholder="Pick system alert"
+                clearable
+                data={[
+                  { value: 'no_alert', label: 'No Alert' },
+                  { value: 'alert_generated', label: 'Alert Generated' },
+                ]}
+                {...form.getInputProps('portfolio_alert')}
+              />
+            </Grid.Col>
+            <Grid.Col span={8}>
+              <DateRangePicker
+                label="Signing Date"
+                placeholder="Pick signing date"
+                inputFormat="MM/DD/YYYY"
+                value={lastMonitoringDate}
+                amountOfMonths={2}
+                onChange={setSigningDate}
+              />
+            </Grid.Col>
+            <Grid.Col span={8}>
+              <DateRangePicker
+                label="Last Monitoring Date"
+                placeholder="Pick last monitoring date"
+                amountOfMonths={2}
+                inputFormat="MM/DD/YYYY"
+                value={lastMonitoringDate}
+                onChange={setLastMonitoringDate}
+              />
+            </Grid.Col>
+            <Grid.Col span={3}>
+              <ActionIcon variant="filled" color="blue" size="lg" type="submit">
+                <MagnifyingGlassIcon height={16} />
+              </ActionIcon>
+            </Grid.Col>
+          </Grid>
+        </form>
+      </Paper>
+      <DataTable
+        withBorder
+        fetching={isDataQueryFetching}
+        columns={[
+          {
+            accessor: 'portfolio_id',
+            hidden: true,
+          },
+          {
+            accessor: 'name',
+            sortable: true,
+          },
+          {
+            accessor: 'type',
+            sortable: true,
+          },
+          {
+            accessor: 'segment',
+            sortable: true,
+          },
+          {
+            accessor: 'apply_date',
+            title: 'Signing Date',
+            sortable: true,
+          },
+          {
+            accessor: 'last_monitoring',
+            title: 'Last Monitoring Date',
+            sortable: true,
+          },
+          {
+            accessor: 'next_monitoring_date',
+            sortable: true,
+            title: 'Next Date',
+          },
+          {
+            accessor: 'amount',
+            title: 'Approved Loan/Limit Amount',
+            sortable: true,
+          },
+          {
+            accessor: 'last_portofolio_alert',
+            title: 'System Alert',
+          },
+          {
+            accessor: 'next_action',
+            title: 'Next Action',
+          },
+        ]}
+        records={tableData}
+        page={page}
+        onPageChange={handlePaginationChange}
+        totalRecords={dataQuery?.meta.pagination.total}
+        recordsPerPage={pageSize}
+        sortStatus={sortStatus}
+        onSortStatusChange={handleSortStatusChange}
+        onRecordsPerPageChange={handleRecordsPerPageChange}
+        recordsPerPageOptions={PAGE_SIZES}
+        highlightOnHover
+        idAccessor="portfolio_id"
+        rowContextMenu={{
+          items: ({ name, portfolio_id }) => [
             {
-              accessor: 'portfolio_id',
-              hidden: true,
+              key: 'details',
+              title: `Open Detail of ${name}`,
+              onClick: () =>
+                router.push(`risk-client-monitoring/${portfolio_id}`),
             },
-            {
-              accessor: 'name',
-              sortable: true,
-            },
-            {
-              accessor: 'type',
-              sortable: true,
-            },
-            {
-              accessor: 'segment',
-              sortable: true,
-            },
-            {
-              accessor: 'apply_date',
-              title: 'Signing Date',
-              sortable: true,
-            },
-            {
-              accessor: 'last_monitoring',
-              title: 'Last Monitoring Date',
-              sortable: true,
-            },
-            {
-              accessor: 'next_monitoring_date',
-              sortable: true,
-              title: 'Next Date',
-            },
-            {
-              accessor: 'amount',
-              title: 'Approved Loan/Limit Amount',
-              sortable: true,
-            },
-            {
-              accessor: 'last_portofolio_alert',
-              title: 'System Alert',
-            },
-            {
-              accessor: 'next_action',
-              title: 'Next Action',
-            },
-          ]}
-          records={tableData}
-          page={page}
-          onPageChange={handlePaginationChange}
-          totalRecords={dataQuery?.meta.pagination.total}
-          recordsPerPage={pageSize}
-          sortStatus={sortStatus}
-          onSortStatusChange={handleSortStatusChange}
-          onRecordsPerPageChange={handleRecordsPerPageChange}
-          recordsPerPageOptions={PAGE_SIZES}
-          highlightOnHover
-          idAccessor="portfolio_id"
-          rowContextMenu={{
-            items: ({ name, portfolio_id }) => [
-              {
-                key: 'details',
-                title: `Open Detail of ${name}`,
-                onClick: () =>
-                  router.push(`risk-client-monitoring/${portfolio_id}`),
-              },
-            ],
-          }}
-        />
-      </SimpleGrid>
-    </Container>
+          ],
+        }}
+      />
+    </PageContent>
   );
 }
 

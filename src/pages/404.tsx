@@ -1,10 +1,10 @@
 import {
-  createStyles,
-  Container,
-  Title,
-  Text,
   Button,
+  Container,
+  createStyles,
   Group,
+  Text,
+  Title,
 } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({

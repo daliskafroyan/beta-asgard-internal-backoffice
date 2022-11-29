@@ -107,7 +107,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     },
   };
 
-  const mep = menu?.map((menu) => {
+  const mappedMenu = menu?.map((menu) => {
     return menu.sub_menu.map((sub_menu) => {
       return sub_menu.list.map((sub_menu_list) => {
         return {
@@ -139,7 +139,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     });
   });
 
-  const actions: SpotlightAction[] = mep?.flat(2) ?? [];
+  const actions: SpotlightAction[] = mappedMenu?.flat(2) ?? [];
 
   useEffect(() => {
     setShowChild(true);

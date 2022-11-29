@@ -1,6 +1,8 @@
+import axios from 'axios';
+
 import { ApiRequestConfig } from '@/api/api.types';
 import useAuthStore from '@/store/useAuthStore';
-import axios from 'axios';
+
 import api from '../../api';
 
 const axiosParams = {

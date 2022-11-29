@@ -1,5 +1,4 @@
-import { UserCircleIcon } from '@heroicons/react/24/outline';
-import { Breadcrumbs, createStyles, Menu, Text } from '@mantine/core';
+import { Breadcrumbs, createStyles, Text } from '@mantine/core';
 import { nanoid } from 'nanoid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -23,7 +22,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function PageBreadcrumbs() {
-  const { classes, theme } = useStyles();
+  const { classes } = useStyles();
   const router = useRouter();
 
   const routeArray = router.asPath.split('/').slice(1);

@@ -1,8 +1,8 @@
 import {
-  AxiosInstance,
-  AxiosRequestConfig,
   AxiosError,
+  AxiosInstance,
   AxiosPromise,
+  AxiosRequestConfig,
   Canceler,
 } from 'axios';
 

@@ -11,7 +11,7 @@ import {
   UnstyledButton,
 } from '@mantine/core';
 
-import { MainMenuType } from '@/components/layouts/AsideNavbar';
+import { MainMenuType } from '@/components/layouts/AppShell/AsideNavbar';
 import iconMapper from '@/utils/iconMapper';
 
 import { SubmenuLinksGroup } from './SubmenuLinksGroup';
@@ -103,13 +103,13 @@ export function LinksGroup({ icon, name, sub_menu }: MainMenuType) {
         onClick={() => setOpened((o) => !o)}
         className={classes.control}
       >
-        <Group position="apart" spacing={0}>
+        <Group position="apart" spacing={0} noWrap>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <ThemeIcon variant="light" size={30}>
               {iconMapper(icon)}
             </ThemeIcon>
             <Box ml="md">
-              <Text tt="capitalize" fw={600} fz="md">
+              <Text tt="capitalize" fw={600} fz="md" lineClamp={1}>
                 {name.replaceAll('_', ' ')}
               </Text>
             </Box>

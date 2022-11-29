@@ -29,9 +29,6 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-// rowHeader: JSX.Element,
-//   rowData: JSX.Element[],
-
 export default function SimpleTable({
   rowHeader,
   rowData,
