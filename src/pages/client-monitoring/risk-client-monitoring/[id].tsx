@@ -1,30 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { ArrowDownTrayIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import {
-  ActionIcon,
-  Anchor,
-  Box,
-  Breadcrumbs,
-  Button,
-  Center,
-  Container,
-  createStyles,
-  Flex,
   Grid,
   Group,
-  LoadingOverlay,
-  Menu,
   Paper,
   Select,
   SimpleGrid,
   Skeleton,
   Text,
-  Textarea,
-  Title,
 } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
-import { DataTable, DataTableColumn } from 'mantine-datatable';
 import { nanoid } from 'nanoid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -45,8 +29,6 @@ import {
   postPortfolioSummary,
   PostPortfolioSummaryRequest,
 } from '@/api/endpoint/midgard/backoffices';
-import SimpleTable from '@/components/common/SimpleTable';
-import PageBreadcrumbs from '@/components/core/PageBreadcrumbs';
 import { PageContent } from '@/components/layouts/PageContent';
 import {
   AdditionalDocuments,

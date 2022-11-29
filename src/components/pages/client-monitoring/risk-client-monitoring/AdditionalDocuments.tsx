@@ -1,38 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
-import {
-  ArrowDownTrayIcon,
-  EllipsisVerticalIcon,
-  PlusIcon,
-} from '@heroicons/react/24/solid';
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Collapse,
-  createStyles,
-  Flex,
-  Grid,
-  Group,
-  Menu,
-  Modal,
-  Paper,
-  Select,
-  SimpleGrid,
-  Text,
-  Textarea,
-  Title,
-  UnstyledButton,
-} from '@mantine/core';
+import { ArrowDownTrayIcon } from '@heroicons/react/24/solid';
+import { Box, Flex, Paper, SimpleGrid, Text, Title } from '@mantine/core';
 import { DataTable } from 'mantine-datatable';
-import { nanoid } from 'nanoid';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import {
-  GetClientPortofolioAdditionalDocumentsResponse,
-  GetClientRecommendationSummaryResponse,
-} from '@/api/endpoint/midgard/backoffices';
+import { GetClientPortofolioAdditionalDocumentsResponse } from '@/api/endpoint/midgard/backoffices';
 
 type AdditionalDocumentsComponent = {
   fetchStatus: 'loading' | 'idle' | 'error' | 'success';
@@ -40,20 +12,6 @@ type AdditionalDocumentsComponent = {
     | GetClientPortofolioAdditionalDocumentsResponse['data']['portfolio_summary_documents']
     | Record<string, never>;
 };
-
-// type FinancialReportsComponent = {
-//   fetchStatus: 'loading' | 'idle' | 'error' | 'success';
-//   data:
-//     | GetClientPortofolioAdditionalDocumentsResponse['data']
-//     | Record<string, never>;
-// };
-
-// type VisitReportsComponent = {
-//   fetchStatus: 'loading' | 'idle' | 'error' | 'success';
-//   data:
-//     | GetClientPortofolioAdditionalDocumentsResponse['data']
-//     | Record<string, never>;
-// };
 
 const additionalDocumentHeader = [
   {
@@ -147,42 +105,6 @@ export function FinancialReports({
 
   return (
     <Paper withBorder p={16}>
-      {/* <Modal
-        opened={modalOpened}
-        onClose={() => setModalOpened(false)}
-        title="Add Summary"
-      >
-        <form
-          onSubmit={form.onSubmit((values) => {
-            submitSummary(values);
-            form.reset();
-            setModalOpened(!modalOpened);
-          })}
-        >
-          <SimpleGrid cols={1}>
-            <Textarea
-              placeholder="Add description from internet research"
-              label="Status"
-              withAsterisk
-              {...form.getInputProps('summary')}
-            />
-            <Select
-              label="RM Action"
-              placeholder="Pick one action"
-              withAsterisk
-              data={[
-                { value: 'No Action Required', label: 'No Action Required' },
-                { value: 'Courtesy Call', label: 'Courtesy Call' },
-                { value: 'Visit', label: 'Visit' },
-              ]}
-              {...form.getInputProps('action')}
-            />
-            <Flex justify="center" align="center">
-              <Button type="submit">Submit</Button>
-            </Flex>
-          </SimpleGrid>
-        </form>
-      </Modal> */}
       <SimpleGrid cols={1} verticalSpacing="sm">
         <Flex justify="flex-start" align="center">
           <Title order={3}>Financial Reports</Title>

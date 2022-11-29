@@ -3,17 +3,10 @@ import { useQuery } from 'react-query';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import {
   ActionIcon,
-  Button,
-  Container,
   createStyles,
-  Divider,
   Grid,
-  Group,
-  Pagination,
   Paper,
   Select,
-  SimpleGrid,
-  Table,
   TextInput,
 } from '@mantine/core';
 import { DateRangePicker, DateRangePickerValue } from '@mantine/dates';
@@ -25,7 +18,6 @@ import {
   getClientPortofolio,
   GetClientPortofolioResponse,
 } from '@/api/endpoint/midgard/backoffices';
-import PageBreadcrumbs from '@/components/core/PageBreadcrumbs';
 import { PageContent } from '@/components/layouts/PageContent';
 import useAuthStore from '@/store/useAuthStore';
 import withAuth from '@/utils/hooks/withAuth';

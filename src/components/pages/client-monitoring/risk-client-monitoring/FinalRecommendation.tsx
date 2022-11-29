@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
-import {
-  ArrowDownTrayIcon,
-  EllipsisVerticalIcon,
-  PlusIcon,
-} from '@heroicons/react/24/solid';
+import { EllipsisVerticalIcon, PlusIcon } from '@heroicons/react/24/solid';
 import {
   ActionIcon,
   Box,
   Button,
-  Collapse,
-  createStyles,
   Flex,
-  Grid,
-  Group,
   Menu,
   Modal,
   Paper,
@@ -22,12 +13,9 @@ import {
   Text,
   Textarea,
   Title,
-  UnstyledButton,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { DataTable } from 'mantine-datatable';
-import { nanoid } from 'nanoid';
-import Link from 'next/link';
 
 import { GetClientRecommendationSummaryResponse } from '@/api/endpoint/midgard/backoffices';
 

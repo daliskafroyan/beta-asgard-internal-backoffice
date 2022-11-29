@@ -1,34 +1,21 @@
 import React, { useState } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
-import {
-  ChevronRightIcon,
-  EllipsisVerticalIcon,
-} from '@heroicons/react/24/outline';
-import { ArrowDownTrayIcon, PlusIcon } from '@heroicons/react/24/solid';
+import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
+import { PlusIcon } from '@heroicons/react/24/solid';
 import {
   ActionIcon,
   Box,
   Button,
-  Collapse,
-  createStyles,
   Flex,
-  Grid,
-  Group,
   Menu,
   Modal,
   Paper,
   Select,
   SimpleGrid,
-  Text,
   Textarea,
   Title,
-  UnstyledButton,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { DataTable } from 'mantine-datatable';
-import { nanoid } from 'nanoid';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import { GetClientPortfolioSummaryResponse } from '@/api/endpoint/midgard/backoffices';
 
