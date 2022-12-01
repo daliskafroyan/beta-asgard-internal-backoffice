@@ -15,8 +15,8 @@ import { DataTable, DataTableSortStatus } from 'mantine-datatable';
 import { useRouter } from 'next/router';
 
 import {
-  getClientPortofolio,
-  GetClientPortofolioResponse,
+  getClientPortfolio,
+  GetClientPortfolioResponse,
 } from '@/api/endpoint/midgard/backoffices';
 import { PageContent } from '@/components/layouts/PageContent';
 import useAuthStore from '@/store/useAuthStore';
@@ -112,10 +112,10 @@ export function RiskClientMonitoring() {
   };
 
   const { data: dataQuery, isFetching: isDataQueryFetching } =
-    useQuery<GetClientPortofolioResponse>(
+    useQuery<GetClientPortfolioResponse>(
       ['client-portofolio', page, riskClientParams],
       () =>
-        getClientPortofolio({
+        getClientPortfolio({
           headers: {
             Authorization: `Bearer ${user?.access_token}`,
           },
@@ -127,9 +127,7 @@ export function RiskClientMonitoring() {
     );
 
   const tableData = React.useMemo(() => {
-    const modifyTableData = (
-      data: GetClientPortofolioResponse['data'] = [],
-    ) => {
+    const modifyTableData = (data: GetClientPortfolioResponse['data'] = []) => {
       const newModifiedTableData = data.map((data) => {
         const individualData: RiskClientTableHeader = {
           name: '',
