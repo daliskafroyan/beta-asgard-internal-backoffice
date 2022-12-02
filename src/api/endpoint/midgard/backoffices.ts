@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { ApiRequestConfig } from '@/api/api.types';
-import useAuthStore from '@/store/useAuthStore';
 
 import api from '../../api';
 
@@ -11,15 +10,8 @@ const axiosParams = {
 
 const axiosInstance = axios.create(axiosParams);
 
-// const user = useAuthStore.useUser();
-
-// const apiRequestConfig = {
-//   headers: {
-//     Authorization: user?.access_token,
-//   },
-// };
-
-export interface GetClientPortofolioResponse {
+//#region  //*=========== Get Client Portfolio ===========
+export interface GetClientPortfolioResponse {
   success: boolean;
   message: {
     en: string;
@@ -56,13 +48,17 @@ export interface GetClientPortofolioResponse {
   };
 }
 
-export const getClientPortofolio = (config: ApiRequestConfig | undefined) =>
+/**
+ * Get client portfolio for CLIK report
+ *
+ */
+export const getClientPortfolio = (config: ApiRequestConfig | undefined) =>
   api(axiosInstance)
-    .get<GetClientPortofolioResponse>('clik/portfolio', config)
+    .get<GetClientPortfolioResponse>('clik/portfolio', config)
     .then((res) => res.data);
+//#endregion  //*======== Get Client Portfolio ===========
 
 //#region  //*=========== Get Portofolio Details ===========
-
 export interface GetPortfolioDetailsResponse {
   success: boolean;
   message: {
@@ -96,6 +92,10 @@ export interface GetPortfolioDetailsResponse {
   };
 }
 
+/**
+ * Get details of user's CLIK report
+ *
+ */
 export const getPortfolioDetails = (
   config: ApiRequestConfig | undefined,
   id: string | string[] | undefined,
@@ -134,6 +134,10 @@ export interface GetClientPortfolioSummaryResponse {
   };
 }
 
+/**
+ * Get user's portfolio summary
+ *
+ */
 export const getClientPortfolioSummary = (
   config: ApiRequestConfig | undefined,
   id: string | string[] | undefined,
@@ -146,7 +150,7 @@ export const getClientPortfolioSummary = (
     .then((res) => res.data);
 //#endregion  //*======== Get Portofolio Status Summary ===========
 
-//#region  //*=========== Get Portofolio Historical Call / Financial Reports / Additional Documents ===========
+//#region  //*=========== Get Portofolio Additional Documents ===========
 export interface GetClientPortofolioAdditionalDocumentsResponse {
   success: boolean;
   message: {
@@ -195,6 +199,10 @@ export interface GetClientPortofolioAdditionalDocumentsResponse {
   };
 }
 
+/**
+ * Get user's additional documents
+ *
+ */
 export const getClientPortofolioAdditionalDocuments = (
   config: ApiRequestConfig | undefined,
   id: string | string[] | undefined,
@@ -205,7 +213,7 @@ export const getClientPortofolioAdditionalDocuments = (
       config,
     )
     .then((res) => res.data);
-//#endregion  //*======== Get Portofolio Historical Call / Financial Reports / Additional Documents ===========
+//#endregion  //*======== Get Portofolio Additional Documents ===========
 
 //#region  //*=========== Get Portofolio Alerts ===========
 export interface GetClientPortfolioAlertsResponse {
@@ -268,6 +276,9 @@ export interface GetClientRecommendationSummaryResponse {
   }>;
 }
 
+/**
+ * Get client recommendation summary from backoffice midgard
+ */
 export const getClientRecommendationSummary = (
   config: ApiRequestConfig | undefined,
 ) =>
