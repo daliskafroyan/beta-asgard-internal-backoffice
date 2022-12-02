@@ -5,7 +5,7 @@ import { ApiRequestConfig } from '@/api/api.types';
 import api from '../../api';
 
 const axiosParams = {
-  baseURL: 'https://asgard.koin.works/v1/backoffices/',
+  baseURL: `${process.env.MIX_BIFROST_HOST}/v1/backoffices/`,
 };
 
 const axiosInstance = axios.create(axiosParams);
